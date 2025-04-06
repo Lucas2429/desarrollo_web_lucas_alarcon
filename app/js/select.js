@@ -95,6 +95,8 @@ const regionesYComunas = {
     poblarRegiones();
     document.getElementById("contacto").value = "";
     document.getElementById("tema").value = "";
+    document.getElementById("inicio").value="2025-08-06T10:00";
+    document.getElementById("termino").value="2025-08-06T13:00";
   };
 
     
