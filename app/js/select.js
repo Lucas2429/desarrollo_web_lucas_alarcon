@@ -17,6 +17,8 @@ const regionesYComunas = {
     "Región de Magallanes y de la Antártica Chilena": ["Punta Arenas", "Laguna Blanca", "Río Verde", "San Gregorio", "Cabo de Hornos", "Antártica", "Porvenir", "Primavera", "Timaukel", "Natales", "Torres del Paine"]
   };
 
+  let numFotos = 1; 
+
   const poblarRegiones = () => {
     const regionSelect = document.getElementById("region");
 
@@ -48,10 +50,51 @@ const regionesYComunas = {
     }
   };
 
+  const updateContacto = () => {
+    let selectedContacto = document.getElementById("contacto").value;
+    let contactoSelect = document.getElementById("contactoOtro");
+    contactoSelect.style.display = selectedContacto ? "block" : "none";
+
+  };
+
+  const updateFotos = () => {
+    if (numFotos < 5) {
+        numFotos += 1;
+        console.log(numFotos);
+
+        let acercaDiv = document.getElementById("acerca");
+
+        let fotolabel = document.createElement("label");
+        fotolabel.setAttribute("for", "foto" + numFotos);
+        fotolabel.style.marginLeft = "36px";
+        acercaDiv.appendChild(fotolabel);
+        
+        let fotoInput = document.createElement("input");
+        fotoInput.type = "file";
+        fotoInput.name = "foto" + numFotos;
+        fotoInput.id = "foto" + numFotos;
+        acercaDiv.appendChild(fotoInput);
+        acercaDiv.appendChild(document.createElement("br"));
+        acercaDiv.appendChild(document.createElement("br"));
+
+    }
+  };
+
+  const updateTema = () => {
+    let selectedTema = document.getElementById("tema").value;
+    let temaSelect = document.getElementById("temaOtro");
+    temaSelect.style.display = selectedTema === "10" ? "block" : "none";
+  };  
+
   document.getElementById("region").addEventListener("change", updateComunas);
+  document.getElementById("contacto").addEventListener("change", updateContacto);
+  document.getElementById("agregarFoto").addEventListener("click", updateFotos);
+  document.getElementById("tema").addEventListener("change", updateTema);
 
   window.onload = ()=> {
     poblarRegiones();
+    document.getElementById("contacto").value = "";
+    document.getElementById("tema").value = "";
   };
 
     

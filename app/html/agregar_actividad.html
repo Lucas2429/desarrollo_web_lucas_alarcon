@@ -26,13 +26,15 @@
                     <option value="">Selecciona una región</option>
                     
                 </select><br><br>
+
                 <label for="comuna">Comuna</label>
                 <select name="comuna" id="comuna" required>
                     <option value="">Selecciona una comuna</option>
+
                 </select><br><br> 
                 
                 <label for="sector">Sector</label>
-                <input type="text" name="sector" id="sector" required><br><br>
+                <input type="text" name="sector" id="sector" maxlength="100" required><br><br>
             </div>
             <div id="organizador">
                 <h3>Organizador</h3>
@@ -40,32 +42,62 @@
                 <input type="text" name="nombre" id="nombre" required><br><br>
                     
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" required><br><br>
+                <input type="email" name="email" id="email" maxlength="100" required><br><br>
                 
                 <label for="phone">Número de Telefono</label>
                 <input type="tel" name="phone" id="phone" required><br><br>
 
+                <label for="contacto">Contacto</label>
+                <select name="contacto" id="contacto" required>
+                    <option value="">Selecciona un contacto</option>
+                    <option value="whatsapp">Whatsapp</option>
+                    <option value="telegram">Telegram</option>
+                    <option value="twitter">Twitter(X)</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="tiktok">Tiktok</option>
+                    <option value="otro">Otro</option>
+                
+                </select><br><br>
+                <div id="contactoOtro" style="display: none;">
+                    <label for="id_contacto">ID / URL</label>
+                    <input type="text" name="id_contacto" id="id_contacto" minlength="4" maxlength="50"><br><br>
+                </div>
                 
             </div>
             <div id="acerca">
                 <h3>Acerca de la junta</h3>
                 <label for="inicio">Inicio</label>
-                <input type="datetime-local" name="inicio" id="inicio" required><br><br>
+                <input type="datetime-local" name="inicio" id="inicio" value="2025-08-06T10:00" required><br><br>
                 
                 <label for="termino">Termino</label>
-                <input type="datetime-local" name="termino" id="termino" required><br><br>
+                <input type="datetime-local" name="termino" id="termino" value="2025-08-06T13:00" required><br><br>
                 
                 <label for="descripcion">Descripcion del evento</label>
-                <input type="text" name="descripcion" id="descripcion" required><br><br>
+                <textarea name="descripcion" id="descripcion" cols="50" rows="10" required></textarea><br><br>
             
                 <label for="tema">Tema</label>
                 <select name="tema" id="tema" required>
                     <option value="">Selecciona un tema</option>
-                </select>
-                <input type="text" name="otroTema" id="otroTema" style="display: none;"><br><br>
-
+                    <option value="1">musica</option>
+                    <option value="2">deporte</option>
+                    <option value="3">ciencias</option>
+                    <option value="4">religión</option>
+                    <option value="5">política</option>
+                    <option value="6">tecnología</option>
+                    <option value="7">juegos</option>
+                    <option value="8">baile</option>
+                    <option value="9">comida</option>
+                    <option value="10">otro</option>
+                </select><br><br>
+                <div id="temaOtro" style="display: none;">
+                    <label for="otroTema">Especifica el tema</label>
+                    <input type="text" name="otroTema" id="otroTema"><br><br>
+                </div>
+        
                 <label for="foto">Foto</label>
-                <input type="file" name="foto" id="foto" required><br><br>
+                <input type="file" name="foto" id="foto" required>
+                <button type="button" id="agregarFoto">Agregar otra foto</button><br><br>
+
             </div>
 
             <button type="submit">Agregar esta actividad</button>
