@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Página de inicio">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Bienvenido a PlaceHolder</h1>
+    </header>
+    <nav>
+        <a href="agregar_actividad.html">Agregar Actividad</a>
+        <a href="actividades.html">Listado de Actividades</a>
+        <a href="estadisticas.html">Estadísticas</a>
+    </nav>
+    <main>
+        <h2>Agregar nueva actividad</h2>
+        <form method="POST">
+            <div id="lugar">
+                <h3>Lugar de la Junta</h3>
+                <label for="region">Región</label>
+                <select name="region" id="region" required>
+                    <option value="">Selecciona una región</option>
+                    
+                </select><br><br>
+                <label for="comuna">Comuna</label>
+                <select name="comuna" id="comuna" required>
+                    <option value="">Selecciona una comuna</option>
+                </select><br><br> 
+                
+                <label for="sector">Sector</label>
+                <input type="text" name="sector" id="sector" required><br><br>
+            </div>
+            <div id="organizador">
+                <h3>Organizador</h3>
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre" required><br><br>
+                    
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required><br><br>
+                
+                <label for="phone">Número de Telefono</label>
+                <input type="tel" name="phone" id="phone" required><br><br>
+
+                
+            </div>
+            <div id="acerca">
+                <h3>Acerca de la junta</h3>
+                <label for="inicio">Inicio</label>
+                <input type="datetime-local" name="inicio" id="inicio" required><br><br>
+                
+                <label for="termino">Termino</label>
+                <input type="datetime-local" name="termino" id="termino" required><br><br>
+                
+                <label for="descripcion">Descripcion del evento</label>
+                <input type="text" name="descripcion" id="descripcion" required><br><br>
+            
+                <label for="tema">Tema</label>
+                <select name="tema" id="tema" required>
+                    <option value="">Selecciona un tema</option>
+                </select>
+                <input type="text" name="otroTema" id="otroTema" style="display: none;"><br><br>
+
+                <label for="foto">Foto</label>
+                <input type="file" name="foto" id="foto" required><br><br>
+            </div>
+
+            <button type="submit">Agregar esta actividad</button>
+        </form>
+    </main>
+</body>
+<script src="../js/select.js"></script>
+</html>
