@@ -18,11 +18,15 @@
     </nav>
     <main>
         <h2>Agregar nueva actividad</h2>
-        <form method="POST">
+        <div id="val-box" hidden>
+            <h2 id="val-msg"></h2>
+            <ul id="val-list"></ul>
+        </div>
+        <form name="formularioActividad" method="post" enctype="multipart/form-data">
             <div id="lugar">
                 <h3>Lugar de la Junta</h3>
                 <label for="region">Región</label>
-                <select name="region" id="region" required>
+                <select name="region" id="region">
                     <option value="">Selecciona una región</option>
                     
                 </select><br><br>
@@ -44,8 +48,8 @@
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" maxlength="100" required><br><br>
                 
-                <label for="phone">Número de Telefono</label>
-                <input type="tel" name="phone" id="phone" required><br><br>
+                <label for="telefono">Número de Telefono</label>
+                <input type="tel" name="telefono" id="telefono" ><br><br>
 
                 <label for="contacto">Contacto</label>
                 <select name="contacto" id="contacto" required>
@@ -58,19 +62,19 @@
                     <option value="otro">Otro</option>
                 
                 </select><br><br>
-                <div id="contactoOtro" style="display: none;">
-                    <label for="id_contacto">ID / URL</label>
-                    <input type="text" name="id_contacto" id="id_contacto" minlength="4" maxlength="50"><br><br>
+                <div id="otroContactoDiv" style="display: none;">
+                    <label for="idContacto">ID / URL</label>
+                    <input type="text" name="idContacto" id="idContacto" minlength="4" maxlength="50"><br><br>
                 </div>
                 
             </div>
             <div id="acerca">
                 <h3>Acerca de la junta</h3>
                 <label for="inicio">Inicio</label>
-                <input type="datetime-local" name="inicio" id="inicio" value="2025-08-06T10:00" required><br><br>
+                <input type="datetime-local" name="inicio" id="inicio" ><br><br>
                 
                 <label for="termino">Termino</label>
-                <input type="datetime-local" name="termino" id="termino" value="2025-08-06T13:00" required><br><br>
+                <input type="datetime-local" name="termino" id="termino" value="2025-08-06T13:00" ><br><br>
                 
                 <label for="descripcion">Descripcion del evento</label>
                 <textarea name="descripcion" id="descripcion" cols="50" rows="10" required></textarea><br><br>
@@ -89,7 +93,7 @@
                     <option value="9">comida</option>
                     <option value="10">otro</option>
                 </select><br><br>
-                <div id="temaOtro" style="display: none;">
+                <div id="otroTemaDiv" style="display: none;">
                     <label for="otroTema">Especifica el tema</label>
                     <input type="text" name="otroTema" id="otroTema"><br><br>
                 </div>
@@ -99,9 +103,8 @@
                 <button type="button" id="agregarFoto">Agregar otra foto</button><br><br>
 
             </div>
-
-            <button type="submit">Agregar esta actividad</button>
         </form>
+        <button id="submit-btn" type="submit">Agregar esta actividad</button>
     </main>
 </body>
 <script src="../js/select.js"></script>

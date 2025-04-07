@@ -52,9 +52,10 @@ const regionesYComunas = {
 
   const updateContacto = () => {
     let selectedContacto = document.getElementById("contacto").value;
-    let contactoSelect = document.getElementById("contactoOtro");
-    contactoSelect.style.display = selectedContacto ? "block" : "none";
-
+    let otroContactoDiv = document.getElementById("otroContactoDiv");
+    let otroContactoInput = document.getElementById("idContacto");
+    otroContactoInput.value = ""; // Limpiar el campo de texto
+    otroContactoDiv.style.display = selectedContacto ? "block" : "none";
   };
 
   const updateFotos = () => {
@@ -82,8 +83,10 @@ const regionesYComunas = {
 
   const updateTema = () => {
     let selectedTema = document.getElementById("tema").value;
-    let temaSelect = document.getElementById("temaOtro");
-    temaSelect.style.display = selectedTema === "10" ? "block" : "none";
+    let temaDiv = document.getElementById("otroTemaDiv");
+    let otroTemaInput = document.getElementById("otroTema");
+    otroTemaInput.value = ""; // Limpiar el campo de texto
+    temaDiv.style.display = selectedTema === "10" ? "block" : "none";
   };  
 
   document.getElementById("region").addEventListener("change", updateComunas);
