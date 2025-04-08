@@ -12,62 +12,152 @@
         <h1>Bienvenido a PlaceHolder</h1>
     </header>
     <nav>
+        <a href="../html/home.html">
+            <img src="../img/white_house_icon.png" alt="Logo de la aplicación">
+        </a>
         <a href="agregar_actividad.html">Agregar Actividad</a>
         <a href="actividades.html">Listado de Actividades</a>
         <a href="estadisticas.html">Estadísticas</a>
     </nav>
     <main>
-        <h2> Actividades Actuales</h2>
-        <table class="table">
-            <tr>
-                <th>Inicio</th>
-                <th>Término</th>
-                <th>Comuna</th>
-                <th>Sector</th>
-                <th>Tema</th>
-                <th>Foto</th>
-            </tr>
-            <tr>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-        </table> 
+        <h2>Listado de Actividades</h2>
+        <ul class="lista-actividades">
+            <li>
+                <a class="clickable" onclick="mostrarActividad('actividad1')">Actividad 1</a>
+                <div class="actividad" id="actividad1" style="display: none;">
+                    <table class="table">
+                        <tr>
+                            <th>Inicio</th>
+                            <th>Término</th>
+                            <th>Comuna</th>
+                            <th>Sector</th>
+                            <th>Tema</th>
+                            <th>Organizador</th>
+                            <th>Fotos</th>
+                        </tr>
+                        <tr>
+                            <td>2025-10-27 08:00 PM</td>
+                            <td>-</td>
+                            <td>Maipú</td>
+                            <td>3 Poniente</td>
+                            <td>juegos</td>
+                            <td>Scarlet</td>
+                            <td>2</td>
+                        </tr>
+                    </table>
+                </div>
+            </li>
+            <li>
+                <a class="clickable" onclick="mostrarActividad('actividad2')">Actividad 2</a>
+                <div class="actividad" id="actividad2" style="display: none;">
+                    <table class="table">
+                        <tr>
+                            <th>Inicio</th>
+                            <th>Término</th>
+                            <th>Comuna</th>
+                            <th>Sector</th>
+                            <th>Tema</th>
+                            <th>Organizador</th>
+                            <th>Fotos</th>
+                        </tr>
+                        <tr>
+                            <td>2025-07-07 08:00 PM</td>
+                            <td>2025-07-07 11:00 PM</td>
+                            <td>Santiago</td>
+                            <td>FCFM</td>
+                            <td>musica</td>
+                            <td>Tom York</td>
+                            <td>1</td>
+                        </tr>
+                    </table>
+                </div>
+            </li>
+            <li>
+                <a class="clickable" onclick="mostrarActividad('actividad3')">Actividad 3</a>
+                <div class="actividad" id="actividad3" style="display: none;">
+                    <table class="table">
+                        <tr>
+                            <th>Inicio</th>
+                            <th>Término</th>
+                            <th>Comuna</th>
+                            <th>Sector</th>
+                            <th>Tema</th>
+                            <th>Organizador</th>
+                            <th>Fotos</th>
+                        </tr>
+                        <tr>
+                            <td>2025-09-10 07:00 PM</td>
+                            <td>2025-09-10 09:00 PM</td>
+                            <td>Ñuñoa</td>
+                            <td>Plaza Ñuñoa</td>
+                            <td>cine</td>
+                            <td>Tintin</td>
+                            <td>5</td>
+                        </tr>
+                    </table>
+                </div>
+            </li>
+            <li>
+                <a class="clickable" onclick="mostrarActividad('actividad4')">Actividad 4</a>
+                <div class="actividad" id="actividad4" style="display: none;">
+                    <table class="table">
+                        <tr>
+                            <th>Inicio</th>
+                            <th>Término</th>
+                            <th>Comuna</th>
+                            <th>Sector</th>
+                            <th>Tema</th>
+                            <th>Organizador</th>
+                            <th>Fotos</th>
+                        </tr>
+                        <tr>
+                            <td>2025-08-01 10:00 AM</td>
+                            <td>2025-08-01 01:00 PM</td>
+                            <td>Las Condes</td>
+                            <td>Centro Cultural</td>
+                            <td>arte</td>
+                            <td>Reve</td>
+                            <td>1</td>  
+                        </tr>
+                    </table>
+                </div>
+            </li>
+            <li>
+                <a class="clickable" onclick="mostrarActividad('actividad5')">Actividad 5</a>
+                <div class="actividad" id="actividad5" style="display: none;">
+                    <table class="table">
+                        <tr>
+                            <th>Inicio</th>
+                            <th>Término</th>
+                            <th>Comuna</th>
+                            <th>Sector</th>
+                            <th>Tema</th>
+                            <th>Organizador</th>
+                            <th>Fotos</th>
+                        </tr>
+                        <tr>
+                            <td>2025-05-07 05:00 PM</td>
+                            <td>2025-05-07 10:00 PM</td>
+                            <td>Maipú</td>
+                            <td>3 Poniente</td>
+                            <td>vtubers</td>
+                            <td>Lucas</td>
+                            <td>1</td>
+                        </tr>
+                    </table>
+                </div>
+            </li>
+        </ul>
     </main>
 </body>
+<script>
+    const mostrarActividad = (id) => {
+        let actividad = document.getElementById(id);
+        if (actividad.style.display === "none") {
+            actividad.style.display = "block";
+        } else {
+            actividad.style.display = "none";
+        }
+    }
+</script>
 </html>

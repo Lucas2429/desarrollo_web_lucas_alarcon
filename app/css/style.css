@@ -15,8 +15,11 @@ header {
 
 nav {
     background-color: #005a9e;
-    padding: 0.5rem;
-    text-align: center;
+    text-align: left;
+    display: flex; 
+    align-items: center; 
+    justify-content: space-evenly; 
+    gap: 1rem; 
 }
 
 nav a {
@@ -28,7 +31,18 @@ nav a {
     transition: background-color 0.3s ease;
 }
 
-nav a:hover {
+nav a:first-child {
+    padding: 0.4rem 1rem;
+    border-radius: 5px;
+}
+
+nav a img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+nav a:not(:first-child):hover {
     background-color: #2f6fa0;
 }
 
@@ -44,12 +58,14 @@ main {
     border-collapse: collapse;
     margin-top: 1rem;
 }
+
 .table th, .table td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 7px;
     text-align: center;
-    word-wrap: break-word;
+    word-break: break-word;
 }
+
 input[type="email"],
 input[type="nombre"],
 input[type="text"],
@@ -116,4 +132,18 @@ button#submit-btn:hover {
     margin: 0;
     list-style-type: disc;
     color: #a94442;
+}
+
+.lista-actividades {
+    list-style-type: square;
+    padding: 10px 50px;
+}
+
+.lista-actividades li {
+    margin-bottom: 10px;
+
+}
+
+.clickable {
+    cursor: pointer;
 }
