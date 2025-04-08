@@ -147,3 +147,9 @@ button#submit-btn:hover {
 .clickable {
     cursor: pointer;
 }
+
+.grafico {
+    width: 100%;
+    height: auto;
+    margin: 20px 0;
+}
