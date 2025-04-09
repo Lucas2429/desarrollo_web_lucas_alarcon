@@ -194,9 +194,6 @@ button#cerrar-btn:hover {
     background-color: #5a5a57;
 }
 
-/* Estilos generales (para pantallas grandes por defecto) */
-/* Ya están definidos en tu archivo actual */
-
 /* Media query para pantallas medianas (tablets, entre 768px y 1024px) */
 @media (max-width: 1024px) {
     body {
@@ -249,7 +246,6 @@ button#cerrar-btn:hover {
 
 /* Media query para pantallas pequeñas (móviles, menos de 768px) */
 @media (max-width: 768px) {
-
 
     .main-container {
         padding: 20px;
