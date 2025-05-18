@@ -77,9 +77,9 @@ const validateDescripcion = (descripcion) => {
 const validateTema = (tema) => {
     if(!tema) return false;
     if(tema=== "10"){
-        let temaOtro = document.getElementById("temaOtro").value;
-        if(!temaOtro) return false;
-        let lenghtValid = temaOtro.trim().length >= 3 && temaOtro.trim().length <= 15;
+        let otroTema = document.getElementById("otroTema").value;
+        if(!otroTema) return false;
+        let lenghtValid = otroTema.trim().length >= 3 && otroTema.trim().length <= 15;
         return lenghtValid;
     }
     return true;
