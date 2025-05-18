@@ -82,7 +82,7 @@
                         <label for="otroTema">Especifica el tema</label>
                         <input type="text" name="otroTema" id="otroTema"><br><br>
                     </div>
-            
+                    
                     <label for="foto">Foto</label>
                     <input type="file" name="foto" id="foto" required>
                     <button type="button" id="agregarFoto">Agregar otra foto</button><br><br>
@@ -92,6 +92,6 @@
             <button id="submit-btn" type="submit">Agregar esta actividad</button>
         </div>
     </main>
-    <script src="../static/js/select.js"></script>
-    <script src="../static/js/validador.js"></script>
+    <script src="{{ url_for('static', filename='js/select.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/validador.js') }}"></script>
 {% endblock %}
