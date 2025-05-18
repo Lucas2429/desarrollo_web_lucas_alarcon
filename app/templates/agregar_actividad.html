@@ -1,24 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Página de inicio">
-    <title>Inicio</title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-    <header>
-        <h1>Bienvenido a PlaceHolder</h1>
-    </header>
-    <nav>
-        <a href="../html/home.html">
-            <img src="../img/white_house_icon.png" alt="Logo de la aplicación">
-        </a>
-        <a href="agregar_actividad.html">Agregar Actividad</a>
-        <a href="actividades.html">Listado de Actividades</a>
-        <a href="estadisticas.html">Estadísticas</a>
-    </nav>
+{% extends "header_base.html" %}
+{% block content %}
     <main>
         <div class="main-container">
             <h2>Agregar nueva actividad</h2>
@@ -113,5 +94,4 @@
     </main>
     <script src="../js/select.js"></script>
     <script src="../js/validador.js"></script>
-</body>
-</html>
+{% endblock %}
