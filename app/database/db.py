@@ -1,3 +1,4 @@
+import
 import pymysql
 
 DB_NAME = "tarea2"
@@ -7,7 +8,7 @@ DB_HOST = "localhost"
 DB_PORT = 3306
 DB_CHARSET = "utf8"
 
-def conn():
+def get_conn():
 	conn = pymysql.connect(
 		db=DB_NAME,
 		user=DB_USERNAME,

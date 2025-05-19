@@ -120,6 +120,8 @@ const validateFormulario = () => {
 
     let fotos = document.querySelectorAll('[id^="foto"]');
     let foto = document.getElementById("foto").files[0];
+
+    let myForm = document.getElementById("myForm");
     
     let invalidInputs = [];
     let isValid = true;
@@ -210,9 +212,9 @@ const validateFormulario = () => {
         let submitButton = document.createElement("button");
         submitButton.innerText = "Enviar";
         submitButton.style.marginRight = "10px";
+        submitButton.type = "submit";
         submitButton.addEventListener("click", () => {
-          // myForm.submit();
-          // no tenemos un backend al cual enviarle los datos
+          myForm.submit();
         });
     
         let backButton = document.createElement("button");

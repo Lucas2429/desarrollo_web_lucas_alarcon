@@ -7,7 +7,7 @@
                 <h2 id="val-msg">PlaceHolder</h2>
                 <ul id="val-list"></ul>
             </div>
-            <form name="formularioActividad" method="post" enctype="multipart/form-data">
+            <form name="formularioActividad" id="myForm" action="agregar_actividad" method="post" enctype="multipart/form-data">
                 <div id="lugar">
                     <h3>Lugar de la Junta</h3>
                     <label for="region">Región</label>
@@ -89,7 +89,7 @@
 
                 </div>
             </form>
-            <button id="submit-btn" type="submit">Agregar esta actividad</button>
+            <button id="submit-btn">Agregar esta actividad</button>
         </div>
     </main>
     <script src="{{ url_for('static', filename='js/select.js') }}"></script>
