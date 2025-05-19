@@ -22,8 +22,6 @@ def estadisticas():
 @app.route('/agregar_actividad', methods=['GET', 'POST'])
 def agregar_actividad():
     if request.method == 'POST':
-        c = db.get_conn()
-        cursor = c.cursor()
         region = request.form.get('region')
         comuna = request.form.get('comuna')
         sector = request.form.get('sector')
@@ -40,11 +38,16 @@ def agregar_actividad():
         foto = request.form.get('foto')
 
         # Carga a la base de datos
-        cursor.execute("SELECT id FROM comuna WHERE nombre = %s", (comuna,))
-        comuna_id = cursor.fetchone()
-        cursor.execute("INSERT INTO actividad (comuna_id, sector, nombre, email, celular, dia_hora_inicio, dia_hora_termino, descripcion) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
-                       (comuna_id, sector, nombre, email, telefono, inicio, termino, descripcion))
-        c.commit()
+        db.create_actividad(
+            comuna_id=comuna,
+            sector=sector,
+            nombre=nombre,
+            email=email,
+            celular=telefono,
+            dia_hora_inicio=inicio, 
+            dia_hora_termino=termino, 
+            descripcion=descripcion
+        )
 
         return redirect(url_for('actividades'))
 
