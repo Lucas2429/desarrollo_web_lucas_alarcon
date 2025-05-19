@@ -84,91 +84,23 @@
                                 <th>Organizador</th>
                                 <th>Fotos</th>
                             </tr>
-                            <tr>
-                                <td>2025-09-10 07:00 PM</td>
-                                <td>2025-09-10 09:00 PM</td>
-                                <td>Ñuñoa</td>
-                                <td>Plaza Ñuñoa</td>
-                                <td>cine</td>
-                                <td>Tintin</td>
-                                <td>5</td>
-                            </tr>
-                            <tr>
-                                <th>Fotos</th>
-                                <td colspan="6" style="text-align:center; ">
-                                    <img class="clickable" onclick="mostrarImagen('../static/img/absolute_Cinema.webp')" src="{{ url_for('static', filename='img/absolute_Cinema.webp') }}" alt="Foto de la actividad" width="320" height="240">
-                                    <img class="clickable" onclick="mostrarImagen('../static/img/cine1.webp')" src="{{ url_for('static', filename='img/cine1.webp') }}" alt="Foto de la actividad" width="320" height="240">
-                                    <img class="clickable" onclick="mostrarImagen('../static/img/cine2.webp')" src="{{ url_for('static', filename='img/cine2.webp') }}" alt="Foto de la actividad" width="320" height="240">
-                                    <img class="clickable" onclick="mostrarImagen('../static/img/cine3.webp')" src="{{ url_for('static', filename='img/cine3.webp') }}" alt="Foto de la actividad" width="320" height="240">
-                                    <img class="clickable" onclick="mostrarImagen('../static/img/cine4.webp')" src="{{ url_for('static', filename='img/cine4.webp') }}" alt="Foto de la actividad" width="320" height="240">
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </li>
-                <li>
-                    <a class="clickable" onclick="mostrarActividad('actividad4')">Actividad 4</a>
-                    <div class="actividad" id="actividad4" style="display: none;">
-                        <table class="table">
-                            <tr>
-                                <th>Inicio</th>
-                                <th>Término</th>
-                                <th>Comuna</th>
-                                <th>Sector</th>
-                                <th>Tema</th>
-                                <th>Organizador</th>
-                                <th>Fotos</th>
-                            </tr>
-                            <tr>
-                                <td>2025-08-01 10:00 AM</td>
-                                <td>2025-08-01 01:00 PM</td>
-                                <td>Las Condes</td>
-                                <td>Centro Cultural</td>
-                                <td>arte</td>
-                                <td>Reve</td>
-                                <td>1</td>  
-                            </tr>
-                            <tr>
-                                <th>Fotos</th>
-                                <td colspan="6" style="text-align:center; ">
-                                    <img class="clickable" onclick="mostrarImagen('../static/img/es_arte.jpg')" src="{{ url_for('static', filename='img/es_arte.jpg') }}" alt="Foto de la actividad" width="320" height="240">
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </li>
-                <li>
-                    <a class="clickable" onclick="mostrarActividad('actividad5')">Actividad 5</a>
-                    <div class="actividad" id="actividad5" style="display: none;">
-                        <table class="table">
-                            <tr>
-                                <th>Inicio</th>
-                                <th>Término</th>
-                                <th>Comuna</th>
-                                <th>Sector</th>
-                                <th>Tema</th>
-                                <th>Organizador</th>
-                                <th>Fotos</th>
-                            </tr>
-                            <tr>
-                                <td>2025-05-07 05:00 PM</td>
-                                <td>2025-05-07 10:00 PM</td>
-                                <td>Maipú</td>
-                                <td>3 Poniente</td>
-                                <td>vtubers</td>
-                                <td>Lucas</td>
-                                <td>5</td>
-                            </tr>
-                            <tr>
-                                <th>Fotos</th>
-                                <td colspan="6" style="text-align:center; ">
-                                    <img class="clickable" onclick="mostrarImagen('../static/img/Dokibird_grande.jpg')" src="{{ url_for('static', filename='img/Dokibird_pequeña.jpg') }}" alt="Foto de la actividad" width="320" height="240">
-                                    <img class="clickable" onclick="mostrarImagen('../static/img/finana_grande.jpg')" src="{{ url_for('static', filename='img/finana_pequeña.jpg') }}" alt="Foto de la actividad" width="320" height="240">
-                                    <img class="clickable" onclick="mostrarImagen('../static/img/nimi_grande.jpg')" src="{{ url_for('static', filename='img/nimi_pequeña.jpg') }}" alt="Foto de la actividad" width="320" height="240">
-                                    <img class="clickable" onclick="mostrarImagen('../static/img/GG_grande.jpg')" src="{{ url_for('static', filename='img/GG_pequeña.jpg') }}" alt="Foto de la actividad" width="320" height="240">
-                                    <img class="clickable" onclick="mostrarImagen('../static/img/CC_grande.jpg')" src="{{ url_for('static', filename='img/CC_pequeña.jpg') }}" alt="Foto de la actividad" width="320" height="240">
-                                </td>
-                            </tr>
+                            {% if data %}
+                                {% for actividad in data%}
+                                    <tr>
+                                        <td>{{ actividad.Inicio }}</td>
+                                        <td>{{ actividad.Termino }}</td>
+                                        <td>{{ actividad.Comuna }}</td>
+                                        <td>{{ actividad.Sector }}</td>
+                                        <td>{{ actividad.Tema }}</td>
+                                        <td>{{ actividad.Organizador }}</td>
+                                        <td>
+                                            {% for foto in actividad.fotos %}
+                                                <img class="clickable" onclick="mostrarImagen('{{ foto }}')" src="{{ foto }}" alt="Foto de la actividad" width="320" height="240">
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                {% endfor%}
+                            {% endif %}
                         </table>
                     </div>
                 </li>

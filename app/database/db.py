@@ -92,9 +92,15 @@ class ActividadTema(Base):
 # --- Database Functions ---
 def get_actividades(page_size):
     session = SessionLocal()
-    confesiones = session.query(Actividad).limit(page_size).all()
+    actividades = session.query(Actividad).limit(page_size).all()
     session.close()
-    return confesiones
+    return actividades
+
+def get_comuna(id):
+    session = SessionLocal()
+    comuna = session.query(Comuna).filter(Comuna.id == id).first()
+    session.close()
+    return comuna
 
 def create_actividad(comuna_id, sector, nombre, email, 
 					celular, dia_hora_inicio, dia_hora_termino, descripcion):

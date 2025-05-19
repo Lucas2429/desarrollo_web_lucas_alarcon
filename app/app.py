@@ -9,13 +9,40 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/home')
 def index():
-    return render_template('home.html')
+    data = []
+    for actividad in db.get_actividades(page_size=5):
+        comuna = db.get_comuna(actividad.comuna_id)
+        tema = db.get_tema(actividad.id)
+        data.append({
+            "Inicio": actividad.dia_hora_inicio,
+            "Termino": actividad.dia_hora_termino,
+            "Comuna": comuna.nombre,
+            "Sector": actividad.sector,
+            "Tema": tema.tema,
+            "Foto": "PlaceHolder",
 
-@app.route('/actividades/')
+        })
+    
+    return render_template('home.html', actividades=actividades)
+
+@app.route('/actividades')
 def actividades():
-    return render_template('actividades.html')
+    data = []
+    for actividad in db.get_actividades(20):
+        comuna = db.get_comuna(actividad.comuna_id)
+        tema = db.get_tema(actividad.id)
+        data.append({
+            "Inicio": actividad.dia_hora_inicio,
+            "Termino": actividad.dia_hora_termino,
+            "Comuna": comuna.nombre,
+            "Sector": actividad.sector,
+            "Tema": tema.tema,
+            "Foto": "PlaceHolder",
 
-@app.route('/estadisticas/')
+        })
+    return render_template('actividades.html', data=data)
+
+@app.route('/estadisticas')
 def estadisticas():
     return render_template('estadisticas.html')
 
