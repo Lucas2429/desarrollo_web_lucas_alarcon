@@ -37,7 +37,8 @@ def actividades():
             "Comuna": comuna.nombre,
             "Sector": actividad.sector,
             "Tema": tema.tema,
-            "Foto": "PlaceHolder",
+            "Organizador": actividad.nombre,
+            "Fotos": [],
 
         })
     return render_template('actividades.html', data=data)
