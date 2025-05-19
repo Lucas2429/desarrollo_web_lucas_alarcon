@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 from markupsafe import escape
 import re
+import pymysql
+from database import db
 
 app = Flask(__name__)
 
@@ -20,3 +22,4 @@ def estadisticas():
 @app.get('/Agregar Actividad/')
 def agregar_actividad():
     return render_template('agregar_actividad.html')
+
