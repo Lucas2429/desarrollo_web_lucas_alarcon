@@ -8,3 +8,5 @@ hay que presionar donde dice "Actividad 1", por ejemplo. Al hacerlo, se desplieg
 
 Se planea en agregar un nuevo input al formulario donde se especifica el nombre de la actividad para mostrarla en la lista
 de actividades. Además de mejorar la resolución de las imagenes al mostrarlas.
+
+No se logro establecer la conexion a la base de datos por acceso denegado, lo que provoco que no carge la pagina, pero sin esto, las paginas cargaban correctamente.
