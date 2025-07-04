@@ -52,10 +52,10 @@ const regionesYComunas = {
 
   const updateContacto = () => {
     let selectedContacto = document.getElementById("contacto").value;
-    let otroContactoDiv = document.getElementById("otroContactoDiv");
-    let otroContactoInput = document.getElementById("idContacto");
-    otroContactoInput.value = ""; // Limpiar el campo de texto
-    otroContactoDiv.style.display = selectedContacto ? "block" : "none";
+    let idContactoDiv = document.getElementById("idContactoDiv");
+    let idContactoInput = document.getElementById("idContacto");
+    idContactoInput.value = ""; // Limpiar el campo de texto
+    idContactoDiv.style.display = selectedContacto ? "block" : "none";
   };
 
   const updateFotos = () => {

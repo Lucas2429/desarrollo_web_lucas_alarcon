@@ -8,84 +8,21 @@
         <div id="containerActividades" class="main-container">
             <h2>Listado de Actividades</h2>
             <ul class="lista-actividades">
-                <li>
-                    <a class="clickable" onclick="mostrarActividad('actividad1')">Actividad 1</a>
-                    <div class="actividad" id="actividad1" style="display: none;">
-                        <table class="table">
-                            <tr>
-                                <th>Inicio</th>
-                                <th>Término</th>
-                                <th>Comuna</th>
-                                <th>Sector</th>
-                                <th>Tema</th>
-                                <th>Organizador</th>
-                                <th>Fotos</th>
-                            </tr>
-                            <tr>
-                                <td>2025-10-27 08:00 PM</td>
-                                <td>-</td>
-                                <td>Maipú</td>
-                                <td>3 Poniente</td>
-                                <td>juegos</td>
-                                <td>Scarlet</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <th>Fotos</th>
-                                <td colspan="6" style="text-align:center; ">
-                                    <img class="clickable" onclick="mostrarImagen('../static/img/Silksong_cover.png')" src="{{ url_for('static', filename='img/Silksong_cover.png') }}" alt="Foto de la actividad" width="320" height="240">
-                                    <img class="clickable" onclick="mostrarImagen('../static/img/escape_from_tarkov.jpg')" src="{{ url_for('static', filename='img/escape_from_tarkov.jpg') }}" alt="Foto de la actividad" width="320" height="240">
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </li>
-                <li>
-                    <a class="clickable" onclick="mostrarActividad('actividad2')">Actividad 2</a>
-                    <div class="actividad" id="actividad2" style="display: none;">
-                        <table class="table">
-                            <tr>
-                                <th>Inicio</th>
-                                <th>Término</th>
-                                <th>Comuna</th>
-                                <th>Sector</th>
-                                <th>Tema</th>
-                                <th>Organizador</th>
-                                <th>Fotos</th>
-                            </tr>
-                            <tr>
-                                <td>2025-07-07 08:00 PM</td>
-                                <td>2025-07-07 11:00 PM</td>
-                                <td>Santiago</td>
-                                <td>FCFM</td>
-                                <td>musica</td>
-                                <td>Tom York</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <th>Fotos</th>
-                                <td colspan="6" style="text-align:center;">
-                                    <img class="clickable" onclick="mostrarImagen('../static/img/Spotify_logo.png')" src="{{ url_for('static', filename='img/Spotify_logo.png') }}" alt="Foto de la actividad" width="320" height="240">
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </li>
-                <li>
-                    <a class="clickable" onclick="mostrarActividad('actividad3')">Actividad 3</a>
-                    <div class="actividad" id="actividad3" style="display: none;">
-                        <table class="table">
-                            <tr>
-                                <th>Inicio</th>
-                                <th>Término</th>
-                                <th>Comuna</th>
-                                <th>Sector</th>
-                                <th>Tema</th>
-                                <th>Organizador</th>
-                                <th>Fotos</th>
-                            </tr>
-                            {% if data %}
-                                {% for actividad in data%}
+                {% if actividades_on_page %}
+                    {% for actividad in actividades_on_page %}
+                        <li>
+                            <a class="clickable" onclick="mostrarActividad('actividad{{ loop.index + 5*(page - 1) }}')">Actividad {{ loop.index + 5*(page - 1) }}</a>
+                            <div class="actividad" id="actividad{{ loop.index + 5*(page - 1) }}" style="display: none;">
+                                <table class="table">
+                                    <tr>
+                                        <th>Inicio</th>
+                                        <th>Término</th>
+                                        <th>Comuna</th>
+                                        <th>Sector</th>
+                                        <th>Tema</th>
+                                        <th>Organizador</th>
+                                        <th>Fotos</th>
+                                    </tr>
                                     <tr>
                                         <td>{{ actividad.Inicio }}</td>
                                         <td>{{ actividad.Termino }}</td>
@@ -94,17 +31,32 @@
                                         <td>{{ actividad.Tema }}</td>
                                         <td>{{ actividad.Organizador }}</td>
                                         <td>
-                                            {% for foto in actividad.fotos %}
-                                                <img class="clickable" onclick="mostrarImagen('{{ foto }}')" src="{{ foto }}" alt="Foto de la actividad" width="320" height="240">
-                                            {% endfor %}
+                                            PlaceHolder
                                         </td>
                                     </tr>
-                                {% endfor%}
-                            {% endif %}
-                        </table>
-                    </div>
-                </li>
+                                </table>
+                            </div>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+                
             </ul>
+            <div class="pagination change-page">
+                {% if page > 1 %}
+                    <button class="page-btn" onclick="location.href='{{ url_for('actividades', page=page-1) }}'">Anterior</button>
+                {% endif %}
+                <span style="font-weight: bold;">Pagina {{page}}</span>
+                {% if total_pages > page %}
+                    <button class="page-btn" onclick="location.href='{{ url_for('actividades', page=page+1) }}'">Siguiente</button>
+                {% endif %}
+            </div>
+            <div class="total-actividades">
+                {% if actividades_on_page %}
+                    <p>Total de Actividades: {{ total_actividades }}</p>
+                {% else %}
+                    <p>No hay actividades para mostrar.</p>
+                {% endif %}
+            </div>
         </div>
     </main>
     <script src="{{ url_for('static', filename='js/actividades.js') }}"></script>

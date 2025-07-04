@@ -38,10 +38,15 @@ const validateTelefono = (telefono) => {
     return lenghtValid && formatValid;
 };
 
+const validateIdContacto = (idContacto) => {
+    if(!idContacto) return false;
+    let lenghtValid = idContacto.trim().length >= 4 && idContacto.trim().length <= 50;
+    return lenghtValid;
+};
+
 const validateContacto = (contacto) => {
     if(!contacto) return false;
-    let lenghtValid = contacto.trim().length >= 4 && contacto.trim().length <= 50;
-    return lenghtValid;
+    return true;
 };
 
 const validateInicio = (inicio) => {
@@ -113,6 +118,8 @@ const validateFormulario = () => {
     let email = formulario["email"].value;
     let telefono = formulario["telefono"].value;
     let contacto = formulario["contacto"].value;
+    let idContactoDiv = document.getElementById("idContactoDiv");
+    let idContacto = idContactoDiv.style.display === "none" ? "" : formulario["idContacto"].value;
     let inicio = formulario["inicio"].value;
     let termino = formulario["termino"].value;
     let descripcion = formulario["descripcion"].value;
@@ -152,6 +159,9 @@ const validateFormulario = () => {
     }
     if(!validateContacto(contacto)) {
         setInvalidInput("contacto");
+    }
+    if(!validateIdContacto(idContacto)) {
+        setInvalidInput("Id de Contacto");
     }
     if(!validateInicio(inicio)) {
         setInvalidInput("inicio");

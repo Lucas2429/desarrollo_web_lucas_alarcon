@@ -7,7 +7,7 @@
                 <h2 id="val-msg">PlaceHolder</h2>
                 <ul id="val-list"></ul>
             </div>
-            <form name="formularioActividad" id="myForm" action="agregar_actividad" method="post" enctype="multipart/form-data">
+            <form name="formularioActividad" id="myForm" action="post_actividad" method="post" enctype="multipart/form-data">
                 <div id="lugar">
                     <h3>Lugar de la Junta</h3>
                     <label for="region">Región</label>
@@ -41,13 +41,13 @@
                         <option value="">Selecciona un contacto</option>
                         <option value="whatsapp">Whatsapp</option>
                         <option value="telegram">Telegram</option>
-                        <option value="twitter">Twitter(X)</option>
+                        <option value="X">X</option>
                         <option value="instagram">Instagram</option>
                         <option value="tiktok">Tiktok</option>
-                        <option value="otro">Otro</option>
+                        <option value="otra">Otro</option>
                     
                     </select><br><br>
-                    <div id="otroContactoDiv" style="display: none;">
+                    <div id="idContactoDiv" style="display: none;">
                         <label for="idContacto">ID / URL</label>
                         <input type="text" name="idContacto" id="idContacto" minlength="4" maxlength="50"><br><br>
                     </div>

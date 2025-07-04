@@ -96,11 +96,38 @@ def get_actividades(page_size):
     session.close()
     return actividades
 
-def get_comuna(id):
+def get_all_actividades():
     session = SessionLocal()
-    comuna = session.query(Comuna).filter(Comuna.id == id).first()
+    actividades = session.query(Actividad).all()
+    session.close()
+    return actividades
+
+def get_comuna_id_by_name(name):
+    session = SessionLocal()
+    comuna = session.query(Comuna).filter_by(nombre=name).first()
+    comuna_id = comuna.id if comuna else None
+    session.close()
+    return comuna_id
+
+def get_comuna_by_id(comuna_id):
+    session = SessionLocal()
+    comuna = session.query(Comuna).filter_by(id=comuna_id).first()
     session.close()
     return comuna
+
+def get_tema_by_id(actividad_id):
+    session = SessionLocal()
+    actividadTema = session.query(ActividadTema).filter_by(actividad_id=actividad_id).first()
+    tema = actividadTema.tema if actividadTema.tema!= 'otro' else actividadTema.glosa_otro
+    session.close()
+    return tema
+
+def get_last_actividad_id():
+    session = SessionLocal()
+    last_actividad = session.query(Actividad).order_by(Actividad.id.desc()).first()
+    last_id = last_actividad.id if last_actividad else None
+    session.close()
+    return last_id
 
 def create_actividad(comuna_id, sector, nombre, email, 
 					celular, dia_hora_inicio, dia_hora_termino, descripcion):
@@ -111,6 +138,27 @@ def create_actividad(comuna_id, sector, nombre, email,
 								dia_hora_termino=dia_hora_termino, 
 								descripcion=descripcion)
     session.add(nueva_actividad)
+    session.commit()
+    session.close()
+
+def create_actividad_tema(actividad_id, tema, glosa_otro=None):
+    session = SessionLocal()
+    nuevo_tema = ActividadTema(actividad_id=actividad_id, tema=tema, glosa_otro=glosa_otro)
+    session.add(nuevo_tema)
+    session.commit()
+    session.close()
+
+def create_contacto_por(actividad_id, nombre, identificador):
+    session = SessionLocal()
+    nuevo_contacto = ContactarPor(actividad_id=actividad_id, nombre=nombre, identificador=identificador)
+    session.add(nuevo_contacto)
+    session.commit()
+    session.close()
+
+def create_foto(actividad_id, ruta_archivo, nombre_archivo):
+    session = SessionLocal()
+    nueva_foto = Foto(actividad_id=actividad_id, ruta_archivo=ruta_archivo, nombre_archivo=nombre_archivo)
+    session.add(nueva_foto)
     session.commit()
     session.close()
 
