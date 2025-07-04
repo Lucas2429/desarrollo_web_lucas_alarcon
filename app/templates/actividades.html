@@ -34,6 +34,39 @@
                                             PlaceHolder
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td colspan="7">
+                                            <div id="val-box{{ loop.index + 5*(page - 1) }}" hidden>
+                                                <h2 id="val-msg{{ loop.index + 5*(page - 1) }}">PlaceHolder</h2>
+                                                <ul id="val-list{{ loop.index + 5*(page - 1) }}"></ul>
+                                            </div>
+                                            <form id="formulario-comentario{{ loop.index + 5*(page - 1) }}" class="formulario-comentario" method="POST" onsubmit="event.preventDefault(); validateComentarioForm({{ loop.index + 5*(page - 1) }}); return false;">
+                                                <input type="hidden" name="actividad_id{{ loop.index + 5*(page - 1) }}" id="actividad_id{{ loop.index + 5*(page - 1) }}" value="{{ actividad.id }}">
+                                                <input type="hidden" name="actividad_numero{{ loop.index + 5*(page - 1) }}" id="actividad_numero{{ loop.index + 5*(page - 1) }}" value="{{ loop.index + 5*(page - 1) }}">
+                                                
+                                                <p class="comentario-header">Dejar un comentario</p><br>
+
+                                                <label for="usuario{{ loop.index + 5*(page - 1) }}">Usuario</label>
+                                                <input type="text" name="usuario{{ loop.index + 5*(page - 1) }}" id="usuario{{ loop.index + 5*(page - 1) }}" min="3" max="80" placeholder="Escribe tu nombre de usuario..." required><br><br>
+                                                
+                                                <label for="comentario{{ loop.index + 5*(page - 1) }}">Comentario</label>
+                                                <textarea name="comentario{{ loop.index + 5*(page - 1) }}" id="comentario{{ loop.index + 5*(page - 1) }}" cols="50" rows="4" minlength="5" placeholder="Escribe tu comentario aquí..." required></textarea><br><br>
+
+                                                <button type="submit" class="submit-btn post-btn" id="comentario-btn{{ loop.index + 5*(page - 1) }}">Agregar comentario</button>
+                                            </form>
+                                            <div class="comentarios-container">
+                                                <p class="comentario-header">Comentarios:</p>
+                                                <ul class="comentarios-list" id="comentarios-list{{ loop.index + 5*(page - 1) }}">
+                                                    {% for comentario in actividad.comentarios %}
+                                                        <li class="comentario-item">
+                                                            <p class="comentario-nombre">{{ comentario.usuario }}</p><p class="comentario-fecha">{{ comentario.fecha }}:</p><br>
+                                                            <span class="comentario-texto">{{ comentario.comentario }}</span>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </table>
                             </div>
                         </li>
@@ -59,5 +92,8 @@
             </div>
         </div>
     </main>
-    <script src="{{ url_for('static', filename='js/actividades.js') }}"></script>
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/actividades.js') }}"></script>
+<script src="{{ url_for('static', filename='js/validar-comentario.js') }}"></script>
 {% endblock %}

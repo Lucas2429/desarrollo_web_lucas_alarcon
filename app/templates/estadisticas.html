@@ -3,20 +3,31 @@
     <main>
         <div class="main-container">
             <h2>Estadisticas</h2>
+
             <ul class="lista-actividades">
                 <li>
                     <div>Actividades por día</div>
-                    <img class="grafico" src="{{ url_for('static', filename='img/Actividades_por_dia.png') }}" alt="Gráfico de actividades por día">
+                    <div id="line-chart" class="chart-box"></div>
                 </li>
                 <li>
                     <div>Total de actividades por Categoría</div>
-                    <img class="grafico" src="{{ url_for('static', filename='img/Actividades_por_categoria.png') }}" alt="Gráfico de total de actividades por categoría">
+                    <div id="pie-chart" class="chart-box"></div>
                 </li>
                 <li>
                     <div>Actividades por mes</div>
-                    <img class="grafico" src="{{ url_for('static', filename='img/Actividades_hora_por_Mes.png') }}" alt="Gráfico de actividades por mes">
+                    <div id="bar-chart" class="chart-box"></div>
                 </li>
             </ul>
+            <button class="page-btn" onclick="location.href='{{ url_for('index') }}'">Volver al Inicio</button>
         </div>
     </main>
 {% endblock %}
+
+{% block javascript %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="{{url_for('static', filename='js/estadisticas.js')}}"></script>
+{% endblock %}
+

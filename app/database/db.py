@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, BigInteger, String, ForeignKey, DateTime, Enum
+from sqlalchemy import create_engine, Column, Integer, BigInteger, String, ForeignKey, DateTime, Enum, TIMESTAMP
 from sqlalchemy.orm import sessionmaker, declarative_base, relationship
 
 
@@ -55,6 +55,7 @@ class Actividad(Base):
     fotos = relationship("Foto", back_populates="actividad", cascade="all, delete")
     contactos = relationship("ContactarPor", back_populates="actividad", cascade="all, delete")
     temas = relationship("ActividadTema", back_populates="actividad", cascade="all, delete")
+    comentarios = relationship("Comentario", back_populates="actividad", cascade="all, delete")
 
 
 class Foto(Base):
@@ -88,6 +89,17 @@ class ActividadTema(Base):
     glosa_otro = Column(String(15), nullable=True)
 
     actividad = relationship("Actividad", back_populates="temas")
+
+class Comentario(Base):
+    __tablename__ = 'comentario'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    nombre = Column(String(80), nullable=False)
+    texto = Column(String(300), nullable=False)
+    fecha = Column(TIMESTAMP, nullable=False)
+    actividad_id = Column(Integer, ForeignKey('actividad.id'), nullable=False)
+
+    actividad = relationship("Actividad", back_populates="comentarios")
 
 # --- Database Functions ---
 def get_actividades(page_size):
@@ -129,6 +141,12 @@ def get_last_actividad_id():
     session.close()
     return last_id
 
+def get_comentarios_by_actividad_id(actividad_id):
+    session = SessionLocal()
+    comentarios = session.query(Comentario).filter_by(actividad_id=actividad_id).all()
+    session.close()
+    return comentarios
+
 def create_actividad(comuna_id, sector, nombre, email, 
 					celular, dia_hora_inicio, dia_hora_termino, descripcion):
     session = SessionLocal()
@@ -162,3 +180,9 @@ def create_foto(actividad_id, ruta_archivo, nombre_archivo):
     session.commit()
     session.close()
 
+def create_comentario(nombre, texto, fecha, actividad_id):
+    session = SessionLocal()
+    nuevo_comentario = Comentario(nombre=nombre, texto=texto, fecha=fecha, actividad_id=actividad_id)
+    session.add(nuevo_comentario)
+    session.commit()
+    session.close()

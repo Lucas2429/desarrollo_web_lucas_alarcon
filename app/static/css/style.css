@@ -13,6 +13,67 @@ header {
     text-align: center;
 }
 
+.formulario-comentario {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+
+.formulario-comentario input[type="text"] {
+    width: 50%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #333;
+}
+
+.comentarios-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.comentarios-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.comentario-item {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border-left: 4px solid #0078d7;
+}
+
+.comentario-nombre {
+    font-weight: bold;
+    color: #0078d7;
+}
+
+.comentario-fecha {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.comentario-texto {
+    font-size: 14px;
+    color: #555;
+}
+
 nav {
     background-color: #005a9e;
     text-align: left;
@@ -208,6 +269,21 @@ button#cerrar-btn:hover {
 .page-btn:hover {
     background-color: #005a9e;
 }
+
+.post-btn {
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 15px;
+    text-align: center;
+}
+.post-btn:hover {
+    background-color: #005a9e;
+}
+
 .change-page {
     display: flex;
     justify-content: center;
@@ -219,6 +295,13 @@ button#cerrar-btn:hover {
     font-weight: bold;
     margin-top: 20px;
     text-align: center;
+}
+
+.comentario-header {
+    display: flex; 
+    justify-content: left; 
+    margin-left: 25px;
+    font-weight: bold;
 }
 
 /* Media query para pantallas medianas (tablets, entre 768px y 1024px) */
