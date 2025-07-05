@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Página de inicio">
+    <title>Inicio</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<header>
+        <h1>Bienvenido a PlaceHolder</h1>
+</header>
+<div th:replace="~{fragments/header_base :: navbar}"></div>
+
+<main>
+    <div class="main-container">
+        <h2>Estadísticas</h2>
+
+        <ul class="lista-actividades">
+            <li>
+                <div>Actividades por día</div>
+                <div id="line-chart" class="chart-box"></div>
+            </li>
+            <li>
+                <div>Total de actividades por Categoría</div>
+                <div id="pie-chart" class="chart-box"></div>
+            </li>
+            <li>
+                <div>Actividades por mes</div>
+                <div id="bar-chart" class="chart-box"></div>
+            </li>
+        </ul>
+        <button class="page-btn" th:onclick="|location.href='@{/}'|">Volver al Inicio</button>
+    </div>
+</main>
+
+<!-- Bloque de scripts específico para esta página -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script th:src="@{/js/estadisticas.js}"></script>
+
+</body>
+</html>

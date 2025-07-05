@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Página de inicio">
+    <title>Inicio</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <header>
+        <h1>Bienvenido a PlaceHolder</h1>
+    </header>
+    <div th:replace="~{fragments/header_base :: navbar}"></div>
+    <main>
+        <div id="mostrarImagenDiv" style="display: none;">
+            <img id="image" src="placeholder" alt="Imagen de la actividad" width="800" height="600"><br>
+            <button id="cerrar-btn" onclick="cerrarImagen()" style="text-align: center;">Cerrar</button>
+        </div>
+        <div id="containerActividades" class="main-container">
+            <h2>Listado de Actividades</h2>
+            <ul class="lista-actividades">
+                <li th:each="actividad, iterStat : ${actividades_on_page}">
+                    <a class="clickable" th:onclick="|mostrarActividad('actividad${iterStat.index + 5 * (${page} - 1)}')|">
+                        Actividad [[${iterStat.index + 5 * (${page} - 1)}]]
+                    </a>
+                    <div class="actividad" th:id="|actividad${iterStat.index + 5 * (${page} - 1)}|" style="display: none;">
+                        <table class="table">
+                            <tr>
+                                <th>Inicio</th>
+                                <th>Término</th>
+                                <th>Comuna</th>
+                                <th>Sector</th>
+                                <th>Tema</th>
+                                <th>Organizador</th>
+                                <th>Fotos</th>
+                            </tr>
+                            <tr>
+                                <td th:text="${actividad.inicio}">Inicio</td>
+                                <td th:text="${actividad.termino}">Término</td>
+                                <td th:text="${actividad.comuna}">Comuna</td>
+                                <td th:text="${actividad.sector}">Sector</td>
+                                <td th:text="${actividad.tema}">Tema</td>
+                                <td th:text="${actividad.organizador}">Organizador</td>
+                                <td>PlaceHolder</td>
+                            </tr>
+                            <tr>
+                                <td colspan="7">
+                                    <div th:id="|val-box${iterStat.index + 5 * (${page} - 1)}|" hidden>
+                                        <h2 th:id="|val-msg${iterStat.index + 5 * (${page} - 1)}|">PlaceHolder</h2>
+                                        <ul th:id="|val-list${iterStat.index + 5 * (${page} - 1)}|"></ul>
+                                    </div>
+                                    <form th:id="|formulario-comentario${iterStat.index + 5 * (${page} - 1)}|" class="formulario-comentario" method="POST" th:onsubmit="|event.preventDefault(); validateComentarioForm(${iterStat.index + 5 * (${page} - 1)}); return false;|">
+                                        <input type="hidden" th:name="|actividad_id${iterStat.index + 5 * (${page} - 1)}|" th:id="|actividad_id${iterStat.index + 5 * (${page} - 1)}|" th:value="${actividad.id}" />
+                                        <input type="hidden" th:name="|actividad_numero${iterStat.index + 5 * (${page} - 1)}|" th:id="|actividad_numero${iterStat.index + 5 * (${page} - 1)}|" th:value="${iterStat.index + 5 * (${page} - 1)}" />
+
+                                        <p class="comentario-header">Dejar un comentario</p><br>
+
+                                        <label th:for="|usuario${iterStat.index + 5 * (${page} - 1)}|">Usuario</label>
+                                        <input type="text" th:name="|usuario${iterStat.index + 5 * (${page} - 1)}|" th:id="|usuario${iterStat.index + 5 * (${page} - 1)}|" min="3" max="80" placeholder="Escribe tu nombre de usuario..." required><br><br>
+
+                                        <label th:for="|comentario${iterStat.index + 5 * (${page} - 1)}|">Comentario</label>
+                                        <textarea th:name="|comentario${iterStat.index + 5 * (${page} - 1)}|" th:id="|comentario${iterStat.index + 5 * (${page} - 1)}|" cols="50" rows="4" minlength="5" placeholder="Escribe tu comentario aquí..." required></textarea><br><br>
+
+                                        <button type="submit" class="submit-btn post-btn" th:id="|comentario-btn${iterStat.index + 5 * (${page} - 1)}|">Agregar comentario</button>
+                                    </form>
+                                    <div class="comentarios-container">
+                                        <p class="comentario-header">Comentarios:</p>
+                                        <ul class="comentarios-list" th:id="|comentarios-list${iterStat.index + 5 * (${page} - 1)}|">
+                                            <li class="comentario-item" th:each="comentario : ${actividad.comentarios}">
+                                                <p class="comentario-nombre" th:text="${comentario.usuario}"></p>
+                                                <p class="comentario-fecha" th:text="${comentario.fecha}">:</p><br>
+                                                <span class="comentario-texto" th:text="${comentario.comentario}"></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </li>
+            </ul>
+            <div class="total-actividades">
+                <p th:if="${#lists.isEmpty(actividades_on_page)}">No hay actividades para mostrar.</p>
+                <p th:unless="${#lists.isEmpty(actividades_on_page)}">Total de Actividades: [[${total_actividades}]]</p>
+            </div>
+            <div class="pagination change-page">
+                <button class="page-btn" th:if="${page > 1}" th:onclick="|location.href='@{/actividades(page=${page - 1})}'|">Anterior</button>
+                <span style="font-weight: bold;">Página [[${page}]]</span>
+                <button class="page-btn" th:if="${total_pages > page}" th:onclick="|location.href='@{/actividades(page=${page + 1})}'|">Siguiente</button>
+            </div>
+            <div>
+                <table class="table">
+                            <tr>
+                                <th>Id</th>
+                                <th>Fecha Inicio</th>
+                                <th>Sector</th>
+                                <th>Nombre</th>
+                                <th>Tema</th>
+                                <th>Nota</th>
+                                <th></th>
+                            </tr>
+                            <tr th:id="actividad-1">
+                                <th>1</th>
+                                <th>2025-06-02</th>
+                                <th>Beauchef 859, terraza</th>
+                                <th>Escuela de malabarismo</th>
+                                <th>deporte</th>
+                                <th id="nota-1">6</th>
+                                <th>
+                                    <a class="clickable" onclick="evaluar(1)">Evaluar</a>    
+                                </th>
+                            </tr>
+                            <tr th:id="actividad-2">
+                                <th>2</th>
+                                <th>2025-05-28</th>
+                                <th>Plaza Santiago</th>
+                                <th>Cátedra Pública</th>
+                                <th>ciencias</th>
+                                <th id="nota-2">-</th>
+                                <th>
+                                    <a class="clickable" onclick="evaluar(2)">Evaluar</a>    
+                                </th>
+                            </tr>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+<script th:src="@{/js/actividades.js}"></script>
+<script th:src="@{/js/validar-comentario.js}"></script>
+<script th:src="@{/js/evaluarS.js}"></script>
+</html>
