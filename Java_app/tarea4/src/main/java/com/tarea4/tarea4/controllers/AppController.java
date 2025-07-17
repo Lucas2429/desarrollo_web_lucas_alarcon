@@ -8,8 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.tarea4.tarea4.models.Actividad;
 import com.tarea4.tarea4.services.AppService;
 
-import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -50,21 +48,21 @@ public class AppController {
 
     @PostMapping("/post_actividad")
     public String postActividad(
-            @RequestParam String comuna,
-            @RequestParam String sector,
-            @RequestParam String nombre,
-            @RequestParam String email,
-            @RequestParam(required = false) String telefono,
-            @RequestParam String contacto,
-            @RequestParam String idContacto,
-            @RequestParam LocalDateTime inicio,
-            @RequestParam LocalDateTime termino,
-            @RequestParam String descripcion,
-            @RequestParam String tema,
+            @RequestParam("comuna") String comuna,
+            @RequestParam("sector") String sector,
+            @RequestParam("nombre") String nombre,
+            @RequestParam("email") String email,
+            @RequestParam("telefono") String telefono,
+            @RequestParam("contacto") String contacto,
+            @RequestParam("idContacto") String idContacto,
+            @RequestParam("inicio") LocalDateTime inicio,
+            @RequestParam("termino") LocalDateTime termino,
+            @RequestParam("descripcion") String descripcion,
+            @RequestParam("tema") String tema,
             @RequestParam(required = false) String otroTema,
-            @RequestParam("fotos") MultipartFile[] fotos
+            @RequestParam("fotos") List<MultipartFile> fotos
 
-    ) throws NoSuchAlgorithmException, IOException {
+    ) throws Exception {
         appService.crearActividad(comuna, sector, nombre, email, telefono,
                 contacto, idContacto, inicio, termino, descripcion,
                 tema, otroTema, fotos);

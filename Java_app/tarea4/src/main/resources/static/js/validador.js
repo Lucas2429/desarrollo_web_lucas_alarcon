@@ -90,25 +90,6 @@ const validateTema = (tema) => {
     return true;
 };
 
-const validateFotos = (fotos) => {
-    if (!fotos) return false;
-  
-    // validación del número de archivos
-    let lengthValid = 1 <= fotos.length && fotos.length <= 5;
-  
-    // validación del tipo de archivo
-    let typeValid = true;
-  
-    for (const foto of fotos) {
-      // el tipo de archivo debe ser "image/<foo>"
-      let fileFamily = foto.files[0].type.split("/")[0];
-      typeValid &&= fileFamily == "image" || foto.files[0].type == "application/pdf";
-    }
-  
-    // devolvemos la lógica AND de las validaciones.
-    return lengthValid && typeValid;
-};
-
 const validateFormulario = () => {
     let formulario = document.forms["formularioActividad"];
     let region = formulario["region"].value;
@@ -124,8 +105,6 @@ const validateFormulario = () => {
     let termino = formulario["termino"].value;
     let descripcion = formulario["descripcion"].value;
     let tema = formulario["tema"].value;
-
-    let fotos = document.querySelectorAll('[id^="foto"]');
 
     let myForm = document.getElementById("myForm");
     
@@ -174,10 +153,6 @@ const validateFormulario = () => {
     if(!validateTema(tema)) {
         setInvalidInput("tema");
     }
-
-    if(!validateFotos(fotos)) {
-        setInvalidInput("fotos");
-    }   
     
     // finalmente mostrar la validación
     let validationBox = document.getElementById("val-box");

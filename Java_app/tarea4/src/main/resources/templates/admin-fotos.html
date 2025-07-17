@@ -34,12 +34,13 @@
                     <td th:text="${foto.actividad.nombre}">Actividad</td>
                     <td th:text="${foto.actividad.email}">Email</td>
                     <td>
-                    <button >Eliminar</button>
+                      <button class="clickable" id="elim-btn">Eliminar</button>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </main>
+  <script th:src="@{/js/eliminar-foto.js}"></script>
   </body>
 </html>

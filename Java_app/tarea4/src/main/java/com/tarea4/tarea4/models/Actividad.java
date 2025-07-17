@@ -46,6 +46,9 @@ public class Actividad {
     @OneToMany(mappedBy = "actividad", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ActividadTema> temas;
 
+    public Actividad(){
+    }
+
     public Actividad(Comuna comuna, String sector, String nombre, String email, String celular,
                  LocalDateTime inicio, LocalDateTime termino, String descripcion) {
         this.comuna = comuna;

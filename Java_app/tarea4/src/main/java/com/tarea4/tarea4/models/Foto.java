@@ -20,6 +20,15 @@ public class Foto {
     @Column(name = "nombre_archivo", nullable = false, length = 300)
     private String nombreArchivo;
 
+    public Foto(){
+    }
+
+    public Foto(Actividad actividad, String rutaArchivo, String nombreArchivo){
+        this.actividad = actividad;
+        this.rutaArchivo = rutaArchivo;
+        this.nombreArchivo = nombreArchivo;
+    }
+
     // Getters y setters
     public Long getId() {
         return id;

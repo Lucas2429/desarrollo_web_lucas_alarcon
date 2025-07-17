@@ -15,7 +15,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -50,9 +49,8 @@ public class AppService {
     public List<Actividad> getUltimasActividades(int cantidad) {
         return actividadRepository.findAll()
                 .stream()
-                .sorted(Comparator.comparing(Actividad::getDiaHoraInicio).reversed())
                 .limit(cantidad)
-                .toList();
+                .toList().reversed();
     }
 
     public List<Actividad> getTodasLasActividades() {
@@ -79,9 +77,10 @@ public class AppService {
 
     public void crearActividad(String comunaNombre, String sector, String nombre, String email,
             String celular, String contacto, String idContacto, LocalDateTime inicio, LocalDateTime termino, String descripcion,
-            String tema, String otroTema, MultipartFile[] fotos) throws NoSuchAlgorithmException, IOException {
+            String tema, String otroTema, List<MultipartFile> fotos) throws Exception {
         
-        if (fotos.length <= 5) {
+        if (fotos.size() <= 5) {
+            System.out.println("Cantidad de fotos recibidas: " + fotos.size());
             Comuna comuna = comunaRepository.findByNombre(comunaNombre)
                 .orElseThrow(() -> new IllegalArgumentException("Comuna no encontrada: " + comunaNombre));
 
@@ -150,7 +149,9 @@ public class AppService {
                 nuevaFoto.setActividad(actividad);
                 nuevaFoto.setNombreArchivo(imgFilename);
                 fotoRepository.save(nuevaFoto);
-            }
+            } 
+        } else {
+            throw new IllegalArgumentException("Actividad no guardada.");
         }
     }
 

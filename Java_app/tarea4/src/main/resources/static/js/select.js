@@ -73,6 +73,7 @@ const regionesYComunas = {
         let fotoInput = document.createElement("input");
         fotoInput.type = "file";
         fotoInput.name = "fotos";
+        fotoInput.accept = "image/png, image/jpg, image/gif, image/jpeg"
         fotoInput.multiple = false;
         fotoInput.id = "foto" + numFotos;
         acercaDiv.appendChild(fotoInput);
@@ -92,7 +93,7 @@ const regionesYComunas = {
 
   document.getElementById("region").addEventListener("change", updateComunas);
   document.getElementById("contacto").addEventListener("change", updateContacto);
-    document.getElementById("agregarFoto").addEventListener("click", updateFotos);
+  document.getElementById("agregarFoto").addEventListener("click", updateFotos);
   document.getElementById("tema").addEventListener("change", updateTema);
 
   window.onload = ()=> {

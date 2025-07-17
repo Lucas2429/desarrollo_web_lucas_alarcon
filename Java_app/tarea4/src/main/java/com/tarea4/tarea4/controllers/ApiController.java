@@ -35,34 +35,6 @@ public class ApiController {
     public Map<String, Object> actividadesPorMesFranja() throws InterruptedException {
         return apiService.getActividadesPorMesFranja();
     }
-    
-    // @PostMapping("/api/evaluar/{actividadId}")
-    // public ResponseEntity<Map<String, Object>> evaluarActividad(
-    //        @PathVariable int actividadId,
-    //        @RequestBody Map<String, Integer> body) {
-        
-    //    Integer nota = body.get("nota");
-    //    if (nota == null || nota < 1 || nota > 7) {
-    //        return ResponseEntity.badRequest().build();
-    //    }
-
-    //    Nota nuevaNota = new Nota();
-    //    nuevaNota.setNota(nota);
-    //    nuevaNota.setActividadId(actividadId);
-    //    notaRepository.save(nuevaNota);
-
-    //    double promedio = notaRepository.findByActividadId(actividadId)
-    //        .stream()
-    //        .mapToInt(Nota::getNota)
-    //        .average()
-    //        .orElse(0.0);
-
-    //    Map<String, Object> response = new HashMap<>();
-    //    response.put("promedio", Math.round(promedio * 10.0) / 10.0); // redondear 1 decimal
-
-    //    return ResponseEntity.ok(response);
-    //}
-
 
 }
 

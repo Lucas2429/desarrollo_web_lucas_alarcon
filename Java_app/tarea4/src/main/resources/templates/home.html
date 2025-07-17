@@ -29,12 +29,12 @@
                 </thead>
                 <tbody>
                     <tr th:each="actividad : ${actividades}">
-                        <td th:text="${actividad.inicio}">Inicio</td>
-                        <td th:text="${actividad.termino}">Término</td>
-                        <td th:text="${actividad.comuna}">Comuna</td>
+                        <td th:text="${actividad.diaHoraInicio}">Inicio</td>
+                        <td th:text="${actividad.diaHoraTermino}">Término</td>
+                        <td th:text="${actividad.comuna.nombre}">Comuna</td>
                         <td th:text="${actividad.sector}">Sector</td>
-                        <td th:text="${actividad.tema}">Tema</td>
-                        <td th:text="${actividad.foto}">Foto</td>
+                        <td th:text="${#lists.isEmpty(actividad.temas) ? 'Sin tema' : actividad.temas[0].glosaOtro}">Tema</td>
+                        <td>Foto</td>
                     </tr>
                 </tbody>
             </table>
