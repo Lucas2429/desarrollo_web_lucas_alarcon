@@ -126,7 +126,6 @@ const validateFormulario = () => {
     let tema = formulario["tema"].value;
 
     let fotos = document.querySelectorAll('[id^="foto"]');
-    let foto = document.getElementById("foto").files[0];
 
     let myForm = document.getElementById("myForm");
     

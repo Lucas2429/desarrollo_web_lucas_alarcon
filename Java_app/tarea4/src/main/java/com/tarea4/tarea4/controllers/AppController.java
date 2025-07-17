@@ -8,6 +8,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.tarea4.tarea4.models.Actividad;
 import com.tarea4.tarea4.services.AppService;
 
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -36,25 +38,6 @@ public class AppController {
         return "actividades";
     }
 
-    @PostMapping("/post_comentario")
-    @ResponseBody
-    public Map<String, Object> postComentario(
-            @RequestParam String usuario,
-            @RequestParam String comentario,
-            @RequestParam int actividad_id
-    ) {
-        Map<String, Object> respuesta = new HashMap<>();
-
-        if (usuario == null || comentario == null || usuario.isEmpty() || comentario.trim().length() < 5) {
-            respuesta.put("error", "El comentario debe tener al menos 5 caracteres y usuario no puede estar vacío");
-            return respuesta;
-        }
-
-        appService.crearComentario(usuario, comentario, LocalDateTime.now(), actividad_id);
-        respuesta.put("message", "Comentario agregado exitosamente");
-        return respuesta;
-    }
-
     @GetMapping("/estadisticas")
     public String estadisticas() {
         return "estadisticas";
@@ -67,7 +50,6 @@ public class AppController {
 
     @PostMapping("/post_actividad")
     public String postActividad(
-            @RequestParam String region,
             @RequestParam String comuna,
             @RequestParam String sector,
             @RequestParam String nombre,
@@ -75,14 +57,15 @@ public class AppController {
             @RequestParam(required = false) String telefono,
             @RequestParam String contacto,
             @RequestParam String idContacto,
-            @RequestParam String inicio,
-            @RequestParam String termino,
+            @RequestParam LocalDateTime inicio,
+            @RequestParam LocalDateTime termino,
             @RequestParam String descripcion,
             @RequestParam String tema,
             @RequestParam(required = false) String otroTema,
-            @RequestParam(required = false) MultipartFile[] fotos
-    ) {
-        appService.crearActividad(region, comuna, sector, nombre, email, telefono,
+            @RequestParam("fotos") MultipartFile[] fotos
+
+    ) throws NoSuchAlgorithmException, IOException {
+        appService.crearActividad(comuna, sector, nombre, email, telefono,
                 contacto, idContacto, inicio, termino, descripcion,
                 tema, otroTema, fotos);
 

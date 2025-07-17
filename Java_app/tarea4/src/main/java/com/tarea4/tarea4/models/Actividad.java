@@ -46,12 +46,17 @@ public class Actividad {
     @OneToMany(mappedBy = "actividad", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ActividadTema> temas;
 
-    @OneToMany(mappedBy = "actividad", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comentario> comentarios;
-
-    @OneToMany(mappedBy = "actividad", cascade = CascadeType.ALL)
-    private List<Nota> notas;
-
+    public Actividad(Comuna comuna, String sector, String nombre, String email, String celular,
+                 LocalDateTime inicio, LocalDateTime termino, String descripcion) {
+        this.comuna = comuna;
+        this.sector = sector;
+        this.nombre = nombre;
+        this.email = email;
+        this.celular = celular;
+        this.diaHoraInicio = inicio;
+        this.diaHoraTermino = termino;
+        this.descripcion = descripcion;
+    }
 
     // Getters y setters
     public Integer getId() { return id; }
@@ -89,9 +94,6 @@ public class Actividad {
 
     public List<ActividadTema> getTemas() { return temas; }
     public void setTemas(List<ActividadTema> temas) { this.temas = temas; }
-
-    public List<Comentario> getComentarios() { return comentarios; }
-    public void setComentarios(List<Comentario> comentarios) { this.comentarios = comentarios; }
     
 }
 

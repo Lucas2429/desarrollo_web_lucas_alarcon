@@ -89,45 +89,8 @@
                 <span style="font-weight: bold;">Página [[${page}]]</span>
                 <button class="page-btn" th:if="${total_pages > page}" th:onclick="|location.href='@{/actividades(page=${page + 1})}'|">Siguiente</button>
             </div>
-            <div>
-                <table class="table">
-                            <tr>
-                                <th>Id</th>
-                                <th>Fecha Inicio</th>
-                                <th>Sector</th>
-                                <th>Nombre</th>
-                                <th>Tema</th>
-                                <th>Nota</th>
-                                <th></th>
-                            </tr>
-                            <tr th:id="actividad-1">
-                                <th>1</th>
-                                <th>2025-06-02</th>
-                                <th>Beauchef 859, terraza</th>
-                                <th>Escuela de malabarismo</th>
-                                <th>deporte</th>
-                                <th id="nota-1">6</th>
-                                <th>
-                                    <a class="clickable" onclick="evaluar(1)">Evaluar</a>    
-                                </th>
-                            </tr>
-                            <tr th:id="actividad-2">
-                                <th>2</th>
-                                <th>2025-05-28</th>
-                                <th>Plaza Santiago</th>
-                                <th>Cátedra Pública</th>
-                                <th>ciencias</th>
-                                <th id="nota-2">-</th>
-                                <th>
-                                    <a class="clickable" onclick="evaluar(2)">Evaluar</a>    
-                                </th>
-                            </tr>
-                </table>
-            </div>
         </div>
     </main>
 </body>
 <script th:src="@{/js/actividades.js}"></script>
-<script th:src="@{/js/validar-comentario.js}"></script>
-<script th:src="@{/js/evaluarS.js}"></script>
 </html>

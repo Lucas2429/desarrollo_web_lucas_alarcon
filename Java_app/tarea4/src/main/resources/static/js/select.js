@@ -72,7 +72,8 @@ const regionesYComunas = {
         
         let fotoInput = document.createElement("input");
         fotoInput.type = "file";
-        fotoInput.name = "foto" + numFotos;
+        fotoInput.name = "fotos";
+        fotoInput.multiple = false;
         fotoInput.id = "foto" + numFotos;
         acercaDiv.appendChild(fotoInput);
         acercaDiv.appendChild(document.createElement("br"));
@@ -91,15 +92,29 @@ const regionesYComunas = {
 
   document.getElementById("region").addEventListener("change", updateComunas);
   document.getElementById("contacto").addEventListener("change", updateContacto);
-  document.getElementById("agregarFoto").addEventListener("click", updateFotos);
   document.getElementById("tema").addEventListener("change", updateTema);
 
   window.onload = ()=> {
     poblarRegiones();
     document.getElementById("contacto").value = "";
     document.getElementById("tema").value = "";
-    document.getElementById("inicio").value="2025-08-06T10:00";
-    document.getElementById("termino").value="2025-08-06T13:00";
+
+    function getDateTimeLocalPlusHours(hoursToAdd) {
+      const now = new Date();
+      now.setHours(now.getHours() + hoursToAdd);
+
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+
+      return `${year}-${month}-${day}T${hours}:${minutes}`;
+    }
+
+    document.getElementById("inicio").value = getDateTimeLocalPlusHours(0);
+    document.getElementById("termino").value = getDateTimeLocalPlusHours(3);
+
   };
 
     
