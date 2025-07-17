@@ -92,6 +92,7 @@ const regionesYComunas = {
 
   document.getElementById("region").addEventListener("change", updateComunas);
   document.getElementById("contacto").addEventListener("change", updateContacto);
+    document.getElementById("agregarFoto").addEventListener("click", updateFotos);
   document.getElementById("tema").addEventListener("change", updateTema);
 
   window.onload = ()=> {
