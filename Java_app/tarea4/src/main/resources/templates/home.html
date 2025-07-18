@@ -29,12 +29,14 @@
                 </thead>
                 <tbody>
                     <tr th:each="actividad : ${actividades}">
-                        <td th:text="${actividad.diaHoraInicio}">Inicio</td>
-                        <td th:text="${actividad.diaHoraTermino}">Término</td>
+                        <td th:text="${#temporals.format(actividad.diaHoraInicio, 'yyyy-MM-dd HH:mm:ss')}">Inicio</td>
+                        <td th:text="${#temporals.format(actividad.diaHoraTermino, 'yyyy-MM-dd HH:mm:ss')}">Término</td>
                         <td th:text="${actividad.comuna.nombre}">Comuna</td>
                         <td th:text="${actividad.sector}">Sector</td>
                         <td th:text="${#lists.isEmpty(actividad.temas) ? 'Sin tema' : actividad.temas[0].glosaOtro}">Tema</td>
-                        <td>Foto</td>
+                        <td>
+                            <img th:src="@{'/uploads/' + ${actividad.fotos[0].nombreArchivo}}" alt="foto" width="100"/>
+                        </td>
                     </tr>
                 </tbody>
             </table>
