@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pagina de admin">
+    <title>Vista Admin</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header>
+      <h1>Bienvenido a PlaceHolder</h1>
+    </header>
+    <div th:replace="~{fragments/header_base :: navbar}"></div>
+    <main>
+        <div class="main-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Fecha</th>
+                        <th>Mensaje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="log : ${logs}">  
+                        <td th:text="${log.id}">id</td>
+                        <td th:text="${#temporals.format(log.fecha, 'yyyy-MM-dd HH:mm:ss')}">Fecha</td>
+                        <td th:text="${log.mensaje}">Mensaje</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+  </body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,14 +29,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                <tr th:each="foto : ${fotos}">
-                    <td><img th:src="@{'/uploads/' + ${foto.nombreArchivo}}" alt="foto" width="100"/></td>
-                    <td th:text="${foto.actividad.nombre}">Actividad</td>
-                    <td th:text="${foto.actividad.email}">Email</td>
-                    <td>
-                      <button class="clickable" id="elim-btn">Eliminar</button>
-                    </td>
-                </tr>
+                  <tr th:each="foto : ${fotos}">
+                      <td><img th:src="@{'/uploads/' + ${foto.nombreArchivo}}" alt="foto" width="100"/></td>
+                      <td th:text="${foto.actividad.nombre}">Actividad</td>
+                      <td th:text="${foto.actividad.email}">Email</td>
+                      <td th:id="botonTd_ + ${foto.id}">
+                        <form th:action="@{/admin-fotos/eliminar-foto}" method="post">
+                            <input type="hidden" name="id" th:value="${foto.id}" />
+
+                            <button type="button" class="eliminar-btn" th:attr="data-id=${foto.id}">
+                                Eliminar
+                            </button>
+
+                            <span class="motivo-wrapper" th:id="'motivo-wrapper-' + ${foto.id}" style="display: none;">
+                                <a>Motivo:</a>
+                                <input type="text" name="motivo" placeholder="Entre 5 y 200 caracteres" min="5" max="200" required />
+                                <button type="submit">Confirmar</button>
+                            </span>
+                        </form>
+                      </td>
+                  </tr>
                 </tbody>
             </table>
         </div>

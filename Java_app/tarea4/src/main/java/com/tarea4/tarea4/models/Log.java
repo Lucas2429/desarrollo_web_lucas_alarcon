@@ -22,6 +22,14 @@ public class Log {
         this.fecha = LocalDateTime.now();
     }
 
+    public Log(){
+    }
+
+    public Log(LocalDateTime fecha, String mensaje){
+        this.fecha = fecha;
+        this.mensaje = mensaje;
+    }
+
     // getters y setters
     public Integer getId() { return id; }
 
